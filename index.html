@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>@insane cheats</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+}
+
+body {
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at top, #15151b 0%, #050507 55%, #020203 100%);
+    color: #f5f5f7;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.panel {
+    width: 100%;
+    max-width: 470px;
+    background: rgba(13, 13, 17, 0.96);
+    border: 1px solid #292930;
+    border-radius: 28px;
+    padding: 28px;
+    box-shadow:
+        0 0 40px rgba(0,0,0,.7),
+        inset 0 0 30px rgba(255,255,255,.015);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 25px;
+    border-bottom: 1px solid #202027;
+}
+
+.logo {
+    font-size: 29px;
+    font-weight: 900;
+    letter-spacing: 5px;
+}
+
+.version {
+    border: 1px solid #303039;
+    border-radius: 13px;
+    padding: 10px 16px;
+    color: #8d8d98;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.status {
+    margin: 24px 0 28px;
+    padding: 28px 20px;
+    text-align: center;
+    border: 1px solid #27272e;
+    border-radius: 24px;
+    background: #101014;
+}
+
+.status-title {
+    color: #686873;
+    letter-spacing: 4px;
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+.status-value {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    font-size: 23px;
+    font-weight: 800;
+}
+
+.dot {
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    background: #77777e;
+    box-shadow: 0 0 12px #555;
+    transition: .3s;
+}
+
+.option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 21px 5px;
+    border-bottom: 1px solid #1d1d24;
+}
+
+.option span {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.toggle {
+    width: 74px;
+    height: 38px;
+    background: #25252c;
+    border-radius: 30px;
+    padding: 4px;
+    cursor: pointer;
+    transition: .25s;
+}
+
+.toggle::after {
+    content: "";
+    display: block;
+    width: 30px;
+    height: 30px;
+    background: #77777e;
+    border-radius: 50%;
+    transition: .25s;
+}
+
+.toggle.active {
+    background: #e9e9ed;
+}
+
+.toggle.active::after {
+    transform: translateX(36px);
+    background: #050507;
+}
+
+.slider-box {
+    margin-top: 24px;
+    padding: 22px;
+    background: #101014;
+    border-radius: 22px;
+    border: 1px solid #18181e;
+}
+
+.slider-top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.slider-title {
+    font-size: 18px;
+}
+
+.slider-value {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+input[type="range"] {
+    width: 100%;
+    accent-color: #168cff;
+    cursor: pointer;
+}
+
+.inject {
+    width: 100%;
+    margin-top: 28px;
+    padding: 20px;
+    border: none;
+    border-radius: 22px;
+    background: #f4f4f6;
+    color: #08080a;
+    font-size: 16px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.inject:active {
+    transform: scale(.98);
+}
+
+.injected {
+    background: #168cff;
+    color: white;
+}
+
+.file-name {
+    text-align: center;
+    color: #77777e;
+    font-size: 12px;
+    margin-top: 12px;
+    word-break: break-all;
+}
+
+.footer {
+    text-align: center;
+    color: #55555f;
+    font-size: 11px;
+    margin-top: 18px;
+    letter-spacing: 2px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="panel">
+
+    <div class="header">
+        <div class="logo">@INSANE</div>
+        <div class="version">iOS v1.0</div>
+    </div>
+
+    <div class="status">
+        <div class="status-title">SYSTEM STATUS</div>
+
+        <div class="status-value">
+            <div class="dot" id="statusDot"></div>
+            <span id="statusText">DESATIVADO</span>
+        </div>
+    </div>
+
+    <div class="option">
+        <span>Aimbot 90%</span>
+        <div class="toggle" onclick="toggle(this)"></div>
+    </div>
+
+    <div class="option">
+        <span>Precision Aim</span>
+        <div class="toggle" onclick="toggle(this)"></div>
+    </div>
+
+    <div class="option">
+        <span>No Recoil</span>
+        <div class="toggle" onclick="toggle(this)"></div>
+    </div>
+
+    <div class="slider-box">
+
+        <div class="slider-top">
+            <span class="slider-title">FOV</span>
+            <span class="slider-value" id="fovValue">180</span>
+        </div>
+
+        <input
+            type="range"
+            min="0"
+            max="360"
+            value="180"
+            oninput="updateFov(this.value)"
+        >
+
+    </div>
+
+    <!-- SELETOR DE ARQUIVO -->
+    <input
+        type="file"
+        id="fileInput"
+        hidden
+        onchange="arquivoSelecionado(this)"
+    >
+
+    <button
+        class="inject"
+        id="injectButton"
+        onclick="document.getElementById('fileInput').click()"
+    >
+        INJETAR AUXÍLIO
+    </button>
+
+    <div class="file-name" id="fileName"></div>
+
+    <div class="footer">
+        @INSANE CHEATS • AUXÍLIO DE MIRA PREMIUM
+    </div>
+
+</div>
+
+<script>
+
+function toggle(element) {
+    element.classList.toggle("active");
+}
+
+function updateFov(value) {
+    document.getElementById("fovValue").textContent = value;
+}
+
+function arquivoSelecionado(input) {
+
+    if (input.files.length === 0) return;
+
+    const arquivo = input.files[0];
+
+    const fileName =
+        document.getElementById("fileName");
+
+    const button =
+        document.getElementById("injectButton");
+
+    const statusText =
+        document.getElementById("statusText");
+
+    const statusDot =
+        document.getElementById("statusDot");
+
+    // Mostra o arquivo escolhido
+    fileName.textContent =
+        "Arquivo selecionado: " + arquivo.name;
+
+    // ATIVA VISUALMENTE O PAINEL
+    statusText.textContent = "ATIVADO";
+
+    statusDot.style.background = "#168cff";
+    statusDot.style.boxShadow =
+        "0 0 15px #168cff";
+
+    button.textContent = "AUXÍLIO ATIVADO";
+    button.classList.add("injected");
+}
+
+</script>
+
+</body>
+</html>
